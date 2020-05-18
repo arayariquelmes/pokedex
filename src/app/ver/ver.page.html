@@ -4,17 +4,19 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let poke of pokemones">
       <ion-card class="cardPokemon">
         <ion-card-header>
           <ion-card-title>
-            <ion-label >Charmander</ion-label>
-            <ion-icon color="danger" class="iconoTipo" size="large" name="flame-outline"></ion-icon>
+            <ion-label >{{poke.nombre}}</ion-label>
+            <ion-icon *ngIf="poke.tipo == 'Fuego'" color="danger" class="iconoTipo" size="large" name="flame-outline"></ion-icon>
+            <ion-icon *ngIf="poke.tipo == 'Eléctrico'"  class="iconoTipo" size="large" color="warning" name="thunderstorm-outline"></ion-icon>
+            <ion-icon  *ngIf="poke.tipo =='Agua'" class="iconoTipo" size="large" color="secondary" name="water-outline"></ion-icon>
           </ion-card-title>
-          <ion-card-subtitle>Numero 1</ion-card-subtitle>
+          <ion-card-subtitle>Numero {{poke.numero}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <p>Pokemon bakan</p>
+          <p>{{poke.descripcion}}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>
