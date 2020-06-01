@@ -19,6 +19,7 @@ export class VerPage implements OnInit {
   //cada vez que se entra a la ventana
   async ionViewWillEnter() {
     //traeme los pokemones
+    //TODO: Esto se va a poner cabron la proxima clase
     this.pokemones = this.pokeService.obtener();
     if(this.pokemones.length == 0){ //no se ha ingresado ninguno?
        //1.Mostrar un alert que diga que no hay pokemones

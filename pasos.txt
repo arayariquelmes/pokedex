@@ -1,0 +1,24 @@
+Configuración de firebase:
+1.registrar app en firebase
+2. copiar firebaseconfig (en este proyecto, estan usando el mio)
+3. Definir firebase config en environment.ts
+4. Abrir terminal (cmd en windows), arrastrar carpeta con cd y ejecutar:
+   npm install --save firebase @angular/fire
+5. Ir al app.module y agregar al principio:
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {environment} from '../environments/environment';
+6. En la parte de imports del app.module:
+,AngularFirestoreModule
+,AngularFireModule.initializeApp(environment.firebase)
+7. en el archivo tsconfig.json agregar:
+  "skipLibCheck": true,
+
+Para usarlo:
+1. En el archivo servicio (pokemones.service, comentarios.service etc)
+agregar: import {AngularFirestore} from '@angular/fire/firestore';
+y:   constructor(public afs:AngularFirestore) { }
+
+2. para hacer un guardado en firebase:
+let colPoke = this.afs.collection("pokemones"); //obtiene la coleccion (lugar donde se va a guardar)
+return colPoke.doc(this.afs.createId()).set(pokemon); //guarda
