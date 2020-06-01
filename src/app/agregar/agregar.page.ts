@@ -18,6 +18,7 @@ export class AgregarPage implements OnInit {
   }
   registrar(){
       let pokemon:Pokemon = {
+        id:'0',
         nombre: this.nombre,
         descripcion: this.descripcion,
         numero: this.numero,

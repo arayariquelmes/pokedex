@@ -19,7 +19,12 @@ export class VerPage implements OnInit {
   //cada vez que se entra a la ventana
   async ionViewWillEnter() {
     //traeme los pokemones
-    this.pokemones = this.pokeService.obtener();
+    let res = await this.pokeService.obtener();
+    this.pokemones = [];
+    res.forEach(p=>{
+      let poke = p.data();
+      this.pokemones.push(poke as Pokemon);
+    });
     if(this.pokemones.length == 0){ //no se ha ingresado ninguno?
        //1.Mostrar un alert que diga que no hay pokemones
        const alert = await this.alertCtrl.create({
