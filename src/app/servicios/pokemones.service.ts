@@ -5,14 +5,18 @@ import {AngularFirestore} from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class PokemonesService {
-  pokemones:Pokemon[]=[];
+
   constructor(public afs:AngularFirestore) { }
   agregar(pokemon:Pokemon){
     let colPoke = this.afs.collection("pokemones");
     return colPoke.doc(this.afs.createId()).set(pokemon);
   }
-  obtener(){
-    //TODO: Como obtener desde firebase??
-    return this.pokemones;
+  async obtener(){
+    //1.Obtener la colección
+    let colPokemones = this.afs.collection("pokemones");
+    //2. Obtener los pokemones de la colección
+    let res = await colPokemones.get();
+    //3. Devolver una promesa
+    return res.toPromise();
   }
 }
